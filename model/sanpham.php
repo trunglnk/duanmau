@@ -10,8 +10,15 @@ function delete_sanpham($id){
     pdo_execute($sql);
 }
 
-function loadall_sanpham(){
-    $sql = "select * from sanpham order by id desc";
+function loadall_sanpham($key,$iddm){
+    $sql ="select * from sanpham where 1";
+    if($key!=""){
+        $sql.=" and name like '%".$key."%'";
+    }
+    if($iddm > 0){
+        $sql.=" and id_danhmuc = '".$iddm."'";
+    }
+    $sql.=" order by id desc";
     $listsanpham = pdo_query($sql);
     return $listsanpham;
 }

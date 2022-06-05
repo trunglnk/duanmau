@@ -76,8 +76,15 @@
                 break;
 
             case 'view-sp':
+                if(isset($_POST['checklist'])&&($_POST['checklist'])){
+                    $key = $_POST['key'];
+                    $iddm = $_POST['id_danhmuc'];
+                }else{
+                    $key = '';
+                    $iddm =0;
+                }
                 $listdanhmuc = loadall_danhmuc();
-                $listsanpham = loadall_sanpham();
+                $listsanpham = loadall_sanpham($key,$iddm);
                 include "sanpham/view-sp.php";
                 break;
 
